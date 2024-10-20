@@ -3,19 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolia's Secret Bot</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Kolia's Secret BOT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        #messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            min-height: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        #user-input {
+            width: 70%;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #send-button {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Kolia's Secret Bot</h1>
-        <div id="chat">
-            <div id="messages"></div>
-            <input type="text" id="user-input" placeholder="Введите ваше сообщение...">
-            <button id="send-button">Отправить</button>
+        <h1>Kolia's Secret BOT</h1>
+        <div id="messages">
+            <div class="message">Бот: Привет! Я помогу тебе подобрать стильную мужскую одежду. Что ты хочешь выбрать сегодня?</div>
+            <div class="message">1. Верхняя одежда</div>
+            <div class="message">2. Брюки</div>
+            <div class="message">3. Обувь</div>
+            <div class="message">4. Аксессуары</div>
         </div>
+        <input type="text" id="user-input" placeholder="Введите ваше сообщение...">
+        <button id="send-button">Отправить</button>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        const sendButton = document.getElementById('send-button');
+        const userInput = document.getElementById('user-input');
+        const messagesDiv = document.getElementById('messages');
+
+        sendButton.addEventListener('click', function() {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage("Вы: " + message);
+                processUserMessage(message.toLowerCase());
+                userInput.value = "";
+            }
+        });
+
+        function addMessage(text) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message';
+            messageElement.textContent = text;
+            messagesDiv.appendChild(messageElement);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function processUserMessage(message) {
+            let reply = '';
+            if (message === 'привет') {
+                reply = 'Привет! Я помогу тебе подобрать стильную мужскую одежду. Что ты хочешь выбрать сегодня?\n1. Верхняя одежда\n2. Брюки\n3. Обувь\n4. Аксессуары';
+            } else if (message === '1') {
+                reply = 'Выберите: Куртка или Пальто?';
+            } else if (message === 'куртка') {
+                reply = 'Вы выбрали Куртку. Сделайте заказ у владельца: @HeDRO1107';
+            } else if (message === 'пальто') {
+                reply = 'Вы выбрали Пальто. Сделайте заказ у владельца: @HeDRO1107';
+            } else if (message === '2') {
+                reply = 'Выберите: Джинсы или Чиносы?';
+            } else if (message === 'джинсы') {
+                reply = 'Вы выбрали Джинсы. Сделайте заказ у владельца: @HeDRO1107';
+            } else if (message === 'чиносы') {
+                reply = 'Вы выбрали Чиносы. Сделайте заказ у владельца: @HeDRO1107';
+            } else if (message === '3') {
+                reply = 'Выберите: Кроссовки или Ботинки?';
+            } else if (message === 'кроссовки') {
+                reply = 'Вы выбрали Кроссовки. Сделайте заказ у владельца: @HeDRO1107';
+            } else if (message === 'ботинки') {
+                reply = 'Вы выбрали Ботинки. Сделайте заказ у владельца: @HeDRO1107';
+            } else if (message === '4') {
+                reply = 'Выберите: Шапка или Ремень?';
+            } else if (message === 'шапка') {
+                reply = 'Вы выбрали Шапку. Сделайте заказ у владельца: @HeDRO1107';
+            } else if (message === 'ремень') {
+                reply = 'Вы выбрали Ремень. Сделайте заказ у владельца: @HeDRO1107';
+            } else {
+                reply = 'Неизвестная команда. Пожалуйста, выберите категорию.';
+            }
+            addMessage("Бот: " + reply);
+        }
+    </script>
 </body>
 </html>
